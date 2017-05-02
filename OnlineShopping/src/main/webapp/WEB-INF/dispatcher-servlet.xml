@@ -11,6 +11,7 @@
    ">
 
 	<context:component-scan base-package="com.sbk.onlineshopping.controller" />
+	<context:component-scan base-package="com.sbk.shoppingbackend.daoimpl" />
 
 	<bean id="viewResolver"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -18,10 +19,10 @@
 		<property name="prefix" value="/WEB-INF/views/" />
 		<property name="suffix" value=".jsp" />
 	</bean>
-	
+
 	<!-- Loading Static resources -->
-	<mvc:annotation-driven/>
-	
-	<mvc:resources location="/assets/" mapping="/resources/**"/>
-	
+	<mvc:annotation-driven />
+
+	<mvc:resources location="/assets/" mapping="/resources/**" />
+
 </beans>
