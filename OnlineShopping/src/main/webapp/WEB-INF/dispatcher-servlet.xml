@@ -10,7 +10,7 @@
    
    ">
 
-	<context:component-scan base-package="com.sbk.onlineshopping.controller" />
+	<context:component-scan base-package="com.sbk.onlineshopping" />
 	<context:component-scan base-package="com.sbk.shoppingbackend" />
 
 	<bean id="viewResolver"

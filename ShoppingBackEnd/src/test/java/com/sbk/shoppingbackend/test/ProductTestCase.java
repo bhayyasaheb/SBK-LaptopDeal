@@ -65,13 +65,13 @@ public class ProductTestCase {
 	@Test
 	public void testActiveProducts(){
 		
-		assertEquals("Something went wrong while fectching the list of Active products!",10,productDAO.listActiveProducts().size());
+		assertEquals("Something went wrong while fectching the list of Active products!",11,productDAO.listActiveProducts().size());
 	}
 	
 	@Test
 	public void testActiveProductsByCategory(){
 		
-		assertEquals("Something went wrong while fectching the list of Active products by category!",4,productDAO.listActiveProductsByCategory(3).size());
+		assertEquals("Something went wrong while fectching the list of Active products by category!",5,productDAO.listActiveProductsByCategory(3).size());
 		
 		assertEquals("Something went wrong while fectching the list of Active products by category!",3,productDAO.listActiveProductsByCategory(2).size());
 		
