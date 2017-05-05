@@ -6,8 +6,18 @@ import com.sbk.shoppingbackend.dto.Category;
 
 public interface CategoryDAO {
 
-	
-	List<Category> list();
-	
+	// get single category by id
 	Category get(int id);
+
+	// get List of All Category
+	List<Category> list();
+
+	// add Category
+	boolean add(Category category);
+
+	// update category
+	boolean update(Category category);
+
+	// delete category
+	boolean delete(Category category);
 }
