@@ -155,6 +155,16 @@ public class Product {
 	public void setViews(int views) {
 		this.views = views;
 	}
+
+	// toString for debugging
+
+	@Override
+	public String toString() {
+		return "Product [id=" + id + ", name=" + name + ", code=" + code + ", brand=" + brand + ", description="
+				+ description + ", unitPrice=" + unitPrice + ", quantity=" + quantity + ", active=" + active
+				+ ", categoryId=" + categoryId + ", supplierId=" + supplierId + ", purchases=" + purchases + ", views="
+				+ views + "]";
+	}
 		
 	
 }
