@@ -25,7 +25,7 @@
 
 <script>
 	window.menu = '${title}';
-	
+
 	window.contextRoot = '${contextRoot}'
 </script>
 
@@ -75,15 +75,21 @@
 			<c:if test="${isUserClickedContact == true}">
 				<%@include file="contact.jsp"%>
 			</c:if>
-			
+
 			<!-- Load only when user clicked All Products or Category Products -->
-			<c:if test="${isUserClickedAllProducts == true or isUserClickedCategoryProducts == true }">
+			<c:if
+				test="${isUserClickedAllProducts == true or isUserClickedCategoryProducts == true }">
 				<%@include file="listProducts.jsp"%>
 			</c:if>
-			
+
 			<!-- Load only when user clicked Show Product -->
 			<c:if test="${isUserClickedShowProduct == true}">
 				<%@include file="singleProduct.jsp"%>
+			</c:if>
+
+			<!-- Load only when user clicked Manage Product -->
+			<c:if test="${isUserClickedManageProducts == true}">
+				<%@include file="manageProducts.jsp"%>
 			</c:if>
 
 		</div>
@@ -97,18 +103,18 @@
 
 		<script src="${js}/jquery.js"></script>
 
-		
+
 
 		<!----------------------------- Bootstrap Core JavaScript -------------------------------------->
 
 		<script src="${js}/bootstrap.min.js"></script>
-		
+
 		<!------------------------------------ DataTable Plugin ------------------------------------------->
-		
+
 		<script src="${js}/jquery.dataTables.js"></script>
-		
+
 		<!------------------------------------ DataTable Bootstrap Script ------------------------------------------->
-		
+
 		<script src="${js}/dataTables.bootstrap.js"></script>
 
 		<!----------------------------------Self coded javaScript ------------------------>
