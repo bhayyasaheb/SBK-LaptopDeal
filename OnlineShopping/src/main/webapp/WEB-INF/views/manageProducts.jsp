@@ -74,7 +74,7 @@
 							<label class="control-label col-md-4" for="unitPrice">Enter Unit Price:</label>
 							<div class="col-md-8">
 							
-							<sf:input type="number" path="unitPrice" id="unitPrice" placeholder="Unit Price in &#8377; " class="form-control"/>
+							<sf:input type="number" path="unitPrice" id="unitPrice" placeholder="Unit Price in &#8377;" class="form-control"/>
 							<sf:errors path="unitPrice" cssClass="help-block" element="em" />
 							</div>
 						</div>

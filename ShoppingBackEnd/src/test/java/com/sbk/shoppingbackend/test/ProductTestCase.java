@@ -57,7 +57,7 @@ public class ProductTestCase {
 		assertEquals("Something went wrong while deleting the existing record!",true,productDAO.delete(product));
 		
 		//list of the product
-		assertEquals("Something went wrong while fectching the list of products!",11,productDAO.list().size());
+		assertEquals("Something went wrong while fetching the list of products!",11,productDAO.list().size());
 		
 	}
 */

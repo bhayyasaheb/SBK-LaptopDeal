@@ -91,6 +91,11 @@
 			<c:if test="${isUserClickedManageProducts == true}">
 				<%@include file="manageProducts.jsp"%>
 			</c:if>
+			
+			<!-- Load only when user clicked Register -->
+			<c:if test="${userClickedRegister == true}">
+				<%@include file="register.jsp"%>
+			</c:if>
 
 		</div>
 

@@ -34,7 +34,10 @@
 					href="${contextRoot}/show/all/products">View Products</a></li>
 					
 				<li id="manageProducts"><a
-					href="${contextRoot}/manage/products">Manage Products</a></li>	
+					href="${contextRoot}/manage/products">Manage Products</a></li>
+					
+				<li id="register"><a
+					href="${contextRoot}/register">Register</a></li>		
 			</ul>
 		</div>
 		<!-- /.navbar-collapse -->

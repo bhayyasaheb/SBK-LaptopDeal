@@ -16,6 +16,10 @@ $(function() {
 	case 'Manage Products':
 		$('#manageProducts').addClass('active');
 		break;
+		
+	case 'Register':
+		$('#register').addClass('active');
+		break;	
 
 	default:
 		if(menu == "Home") break;
