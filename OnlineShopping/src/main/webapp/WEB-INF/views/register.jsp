@@ -32,7 +32,7 @@
 				
 				<div class="panel-heading">
 					
-					<h4 align="center">Register</h4>
+					<h4 align="center">Sign Up Here</h4>
 					
 				</div>
 				
@@ -55,6 +55,22 @@
 							<div class="col-md-8">
 								<sf:input type="text" path="last_name" id="last name" placeholder="Last Name" class="form-control"/>
 								<sf:errors path="last_name" cssClass="help-block" element="em"/> 
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<label class="control-label col-md-4" for="dob">Enter Date of Birth</label>
+							<div class="col-md-8">
+								<sf:input type="text" path="dob" id="dob" placeholder="Date of Birth" class="form-control"/>
+								<sf:errors path="dob" cssClass="help-block" element="em"/> 
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<label class="control-label col-md-4" for="address">Enter Address</label>
+							<div class="col-md-8">
+								<sf:input type="text" path="address" id="address" placeholder="Address" class="form-control"/>
+								<sf:errors path="address" cssClass="help-block" element="em"/> 
 							</div>
 						</div>
 						
@@ -86,7 +102,7 @@
 						<div class="form-group">
 							<label class="control-label col-md-4" for="contact_number">Enter Contact Number</label>
 							<div class="col-md-8">
-								<sf:input type="tel" path="contact_number" id="contactNumber" placeholder="Contact Number" class="form-control"/>
+								<sf:input  type="tel" path="contact_number" id="contactNumber" placeholder="Contact Number" class="form-control"/>
 								<sf:errors path="contact_number" cssClass="help-block" element="em"/> 
 							</div>
 						</div> 

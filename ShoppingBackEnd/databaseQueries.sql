@@ -99,3 +99,18 @@ INSERT INTO product
 VALUES ('SBK9','Apple Macbook Pro Core i5 - 8 GB/256 GB','Apple','Intel Core i5 Processor ( ),8 GB DDR3 RAM,64 bit Mac OS Operating System,256 GB SSD,13 inch Display',14999,5,true,1,2);
 
 
+CREATE TABLE user_detail(
+	id IDENTITY,
+	first_name VARCHAR(50),
+	last_name VARCHAR(50),
+    dob varchar(20),
+    address varchar(50),
+	role VARCHAR(50),
+	enabled BOOLEAN,
+	password VARCHAR(50),
+	email VARCHAR(100),
+	contact_number VARCHAR(15),
+	
+	CONSTRAINT pk_user_id PRIMARY KEY(id),
+);
+

@@ -25,28 +25,31 @@ public class UserTestCase {
 		userDAO = (UserDAO) context.getBean("userDAO");
 	}
 	
-	@Test
+	/*@Test
 	public void testCRUDUser()
 	{
 		// create operation
 		user = new User();
 		
-		user.setFirst_name("Mangesh");
-		user.setLast_name("Linge");
-		user.setRole("User");
+		user.setFirst_name("Bhayyasaheb");
+		user.setLast_name("Koke");
+		user.setDob("30/04/1993");
+		user.setAddress("Mhaswad");
+		user.setRole("Admin");
 		user.setEnabled(true);
-		user.setPassword("Mangesh@123");
-		user.setEmail("mangeshlinge@gmail.com");
-		user.setContact_number("8600193748");
+		user.setPassword("SBK@123");
+		user.setEmail("bhayyasahebkoke@gmail.com");
+		user.setContact_number("9730586363");
 		
-		assertEquals("Something went wrong while inserting a new User!",true,userDAO.add(user));
+		//assertEquals("Something went wrong while inserting a new User!",true,userDAO.add(user));
 		
 		// reading and updating the user
 		
-		user= userDAO.get(4);
-		user.setContact_number("8600193748");
-		user.setEmail("mangeshlinge@gmail.com");
-		user.setRole("USER");
+		user= userDAO.get(1);
+		//user.setContact_number("8600193748");
+		//user.setEmail("mangeshlinge@gmail.com");
+		user.setRole("ADMIN");
+		user.setEnabled(true);
 		
 		assertEquals("Something went wrong while updating the existing record!", true,userDAO.update(user));
 		
@@ -55,13 +58,13 @@ public class UserTestCase {
 		assertEquals("Something went wrong while deleting the existing record!",true,userDAO.delete(user));
 		
 		//list of the user
-		assertEquals("Something went wrong while fetching the existing record!", 4,userDAO.list().size());
-	}
+		assertEquals("Something went wrong while fetching the existing record!", 1,userDAO.list().size());
+	}*/
 	
 	@Test
 	public void testActiveUser()
 	{
-		assertEquals("Something went wrong while fetching the list of Active User!",3,userDAO.listActiveUser().size());
+		assertEquals("Something went wrong while fetching the list of Active User!",1,userDAO.listActiveUser().size());
 	}
 	
 	@Test
@@ -69,9 +72,23 @@ public class UserTestCase {
 	{
 		assertEquals("Something went wrong while fetching the list of Active user by Role!",1,userDAO.listActiveUserByRole("ADMIN").size());
 		
-		assertEquals("Something went wrong while fetching the list of Active user by Role!",1,userDAO.listActiveUserByRole("SUPPLIER").size());
+		//assertEquals("Something went wrong while fetching the list of Active user by Role!",1,userDAO.listActiveUserByRole("SUPPLIER").size());
 		
-		assertEquals("Something went wrong while fetching the list of Active user by Role!",1,userDAO.listActiveUserByRole("USER").size());
+		//assertEquals("Something went wrong while fetching the list of Active user by Role!",1,userDAO.listActiveUserByRole("USER").size());
+	}
+	
+	@Test
+	public void testUserByEmail()
+	{
+		user=userDAO.getByEmail("bhayyasahebkoke@gmail.com");
+		System.out.println(user);
+		assertEquals("Something went wrong while fetching the Email of User!","bhayyasahebkoke@gmail.com",user.getEmail());
+	}
+	@Test 
+	public void testUserByContactNumber()
+	{
+		user=userDAO.getByContactNumber("9730586363");
+		assertEquals("Something went wrong while fetching the Contact Number of User!","9730586363",user.getContact_number());
 	}
 }
 

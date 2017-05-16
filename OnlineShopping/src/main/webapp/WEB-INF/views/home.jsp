@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+	
+	<%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+	
+	<spring:url var="images" value="/resources/images" />
+	
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -28,20 +33,35 @@
 									class="active"></li>
 								<li data-target="#carousel-example-generic" data-slide-to="1"></li>
 								<li data-target="#carousel-example-generic" data-slide-to="2"></li>
+								<li data-target="#carousel-example-generic" data-slide-to="3"></li>
+								<li data-target="#carousel-example-generic" data-slide-to="4"></li>
 							</ol>
 							<div class="carousel-inner">
 								<div class="item active">
-									<img class="slide-image" src="http://placehold.it/800x300"
-										alt="">
+									<img class="slide-image" src="${images}/iPhone-SE.jpg"
+										alt="iPhone SE">
 								</div>
 								<div class="item">
-									<img class="slide-image" src="http://placehold.it/800x300"
-										alt="">
+									<img class="slide-image" src="${images}/led.jpg"
+										alt="Smart LED TV">
 								</div>
+								
 								<div class="item">
-									<img class="slide-image" src="http://placehold.it/800x300"
-										alt="">
+									<img class="slide-image" src="${images}/laptop.jpg"
+										alt="Apple Mackbook Air">
 								</div>
+								
+								<div class="item">
+									<img class="slide-image" src="${images}/iphone-6s.jpg"
+										alt="iPhone 6s">
+								</div>
+								
+								<div class="item">
+									<img class="slide-image" src="${images}/headPhone.jpg"
+										alt="HeadPhone">
+								</div>
+								
+								
 							</div>
 							<a class="left carousel-control" href="#carousel-example-generic"
 								data-slide="prev"> <span

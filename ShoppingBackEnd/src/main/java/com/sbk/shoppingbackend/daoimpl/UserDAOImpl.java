@@ -2,6 +2,7 @@ package com.sbk.shoppingbackend.daoimpl;
 
 import java.util.List;
 
+import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -12,28 +13,29 @@ import com.sbk.shoppingbackend.dto.User;
 
 @Repository("userDAO")
 @Transactional
-public class UserDAOImpl implements UserDAO{
+public class UserDAOImpl implements UserDAO {
 
 	@Autowired
 	private SessionFactory sessionFactory;
-	
+
 	/**
 	 * Getting single User by id
 	 */
 	@Override
 	public User get(int userId) {
-		
+
 		return sessionFactory.getCurrentSession().get(User.class, Integer.valueOf(userId));
+
 	}
-	
+
 	/**
 	 * Get the List of All User
 	 */
 
 	@Override
 	public List<User> list() {
-		
-		return sessionFactory.getCurrentSession().createQuery("FROM User",User.class).getResultList();
+
+		return sessionFactory.getCurrentSession().createQuery("FROM User", User.class).getResultList();
 	}
 
 	/**
@@ -77,7 +79,7 @@ public class UserDAOImpl implements UserDAO{
 			e.printStackTrace();
 			return false;
 		}
-		
+
 	}
 
 	/**
@@ -85,10 +87,10 @@ public class UserDAOImpl implements UserDAO{
 	 */
 	@Override
 	public List<User> listActiveUser() {
-		
+
 		String selectActiveUser = "FROM User WHERE enabled = :enabled";
-		
-		return sessionFactory.getCurrentSession().createQuery(selectActiveUser,User.class)
+
+		return sessionFactory.getCurrentSession().createQuery(selectActiveUser, User.class)
 				.setParameter("enabled", true).getResultList();
 	}
 
@@ -97,11 +99,44 @@ public class UserDAOImpl implements UserDAO{
 	 */
 	@Override
 	public List<User> listActiveUserByRole(String role) {
-		
+
 		String selectActiveUserRole = "FROM User WHERE enabled = :enabled AND role = :role";
-		
+
 		return sessionFactory.getCurrentSession().createQuery(selectActiveUserRole, User.class)
 				.setParameter("enabled", true).setParameter("role", role).getResultList();
+	}
+
+	@Override
+	public User getByEmail(String email) {
+
+		try {
+			return sessionFactory.getCurrentSession().createQuery("From User where email = :email",User.class)
+					.setParameter("email", email).getSingleResult();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+
+		// return (User)
+		/*
+		 * Query query=sessionFactory.getCurrentSession().
+		 * createQuery("FROM User where email=?"); query.setString(0, email);
+		 * query.uniqueResult(); return (User) query;
+		 */
+
+	}
+
+	@Override
+	public User getByContactNumber(String contact_number) {
+
+		try {
+
+			return (User) sessionFactory.getCurrentSession().createQuery("FROM User Where contact_number=?")
+					.setParameter(0, contact_number).getSingleResult();
+
+		} catch (Exception e) {
+			return null;
+		}
 	}
 
 }

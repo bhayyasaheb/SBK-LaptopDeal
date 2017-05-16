@@ -28,4 +28,10 @@ public interface UserDAO {
 	
 	// list of active user by role
 	List<User> listActiveUserByRole(String role);
+	
+	// get user by email
+	User getByEmail(String email);
+	
+	// get user by contact number
+	User getByContactNumber(String contact_number);
 }

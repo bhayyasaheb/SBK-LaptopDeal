@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.sbk.onlineshopping.validator.UserValidator;
 import com.sbk.shoppingbackend.dao.UserDAO;
 import com.sbk.shoppingbackend.dto.User;
 
@@ -26,6 +25,7 @@ public class UserController {
 	
 	@Autowired
 	private UserDAO userDAO;
+	
 	
 	
 	
@@ -58,16 +58,22 @@ public class UserController {
 	@RequestMapping(value="/register",method=RequestMethod.POST)
 	public String handleUserSubmission(@Valid @ModelAttribute("register") User mUser,BindingResult results,Model model)
 	{
-		// handle email validation for new user
-		if(!(mUser.getEmail()==null))
-		{
-			new UserValidator().validate(mUser,results);
+		// check whether email already exist or not in database
+		if(!mUser.getEmail().isEmpty()){
+			if(userDAO.getByEmail(mUser.getEmail())!=null){
+				results.rejectValue("email", null , "Email already present!");
+			}
 		}
-			
 		
+		// check whether contact number already exist or not in database
 		
-		
-		
+		if(!mUser.getContact_number().isEmpty())
+		{
+			if(userDAO.getByContactNumber(mUser.getContact_number()) != null)
+			{
+				results.rejectValue("contact_number", null, "Contact Number Aready Present!");
+			}
+		}
 		// check if there are any errors
 		if(results.hasErrors())
 		{
@@ -85,4 +91,26 @@ public class UserController {
 		
 		return "redirect:/register?operation=register";
 	}
+	
+	@RequestMapping(value="/login",method=RequestMethod.GET)
+	public ModelAndView loginUser()
+	{
+		ModelAndView mv = new ModelAndView("page");
+		mv.addObject("isUserClickedLogin",true);
+		mv.addObject("title","Login");
+		
+		return mv;
+	}
+	
+	
+	
+	
+	/*@RequestMapping(value="/login",method=RequestMethod.POST)
+	public String handleLoginSubmissionModel(Model model)
+	{
+		model.addAttribute("isUserClickedLogin",true);
+		model.addAttribute("title","Login");
+		
+		return "page";
+	}*/	
 }

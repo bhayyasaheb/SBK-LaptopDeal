@@ -34,11 +34,18 @@
 					href="${contextRoot}/show/all/products">View Products</a></li>
 					
 				<li id="manageProducts"><a
-					href="${contextRoot}/manage/products">Manage Products</a></li>
-					
-				<li id="register"><a
-					href="${contextRoot}/register">Register</a></li>		
+					href="${contextRoot}/manage/products">Manage Products</a></li>			
 			</ul>
+			
+			<ul class="nav navbar-nav navbar-right">
+				<li id="login"><a
+					href="${contextRoot}/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+					
+      			<li id="register"><a
+					href="${contextRoot}/register"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+				
+   		   </ul>
+			
 		</div>
 		<!-- /.navbar-collapse -->
 	</div>

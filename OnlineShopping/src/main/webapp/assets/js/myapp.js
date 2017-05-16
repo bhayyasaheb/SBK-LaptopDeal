@@ -19,6 +19,10 @@ $(function() {
 		
 	case 'Register':
 		$('#register').addClass('active');
+		break;
+
+	case 'Login':
+		$('#login').addClass('active');
 		break;	
 
 	default:
@@ -352,6 +356,57 @@ var $adminProductsTable = $('#adminProductsTable');
 	}
 	
 	//----------------------------------
+	
+	
+	//validate code for user login
+	
+	var $loginForm = $('#loginForm');
+	
+	if($loginForm.length){
+		
+		$loginForm.validate({
+			
+			rules : {
+				
+				userName : {
+					
+					required:true
+				},
+				
+				password : {
+					
+					required: true
+				}
+			},
+			
+			messages :{
+				
+				userName :{
+					required : 'Please Enter User Name!'
+				},
+				
+				password :{
+					
+					required : 'Please Enter Password!'
+				}
+			},
+			
+		   errorElement : 'em',
+		   errorPlacement: function(error,element){
+			   
+			   // add the class of help-block
+			   
+			   error.addClass('help-block');
+			   
+			   // add the error element after the input
+			   error.insertAfter(element);
+		   }
+			
+		});
+	}
+	
+	
+	//-----------------------------------------------------
 	
 });
 

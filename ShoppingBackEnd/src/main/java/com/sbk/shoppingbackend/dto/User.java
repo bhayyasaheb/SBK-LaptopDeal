@@ -5,15 +5,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Email;
-import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
-import org.springframework.format.annotation.NumberFormat;
-import org.springframework.format.annotation.NumberFormat.Style;
 
 @Entity
 @Table(name="User_Detail")
@@ -46,11 +41,35 @@ public class User {
 	private String email;
 	
 	@NotBlank(message="Please Enter Contact Number!")
-	@Length(max=10,min=10,message="Phone number is not valid. Should be of length 10.")
-	@NumberFormat(style=Style.NUMBER)
+	//@Length(max=10,min=10,message="Phone number is not valid. Should be of length 10.")
+	//@NumberFormat(style=Style.NUMBER)
 	private String contact_number;
+	
+	@NotBlank(message="Please Enter Address!")
+	private String address;
+	
+	@NotBlank(message="Please Enter Date of Birth!")
+	private String dob;
+
 
 	
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public String getDob() {
+		return dob;
+	}
+
+	public void setDob(String dob) {
+		this.dob = dob;
+	}
+
+		
 	/**
 	 * Setter and Getter method
 	 */
@@ -123,9 +142,10 @@ public class User {
 	public String toString() {
 		return "User [id=" + id + ", first_name=" + first_name + ", last_name=" + last_name + ", role=" + role
 				+ ", enabled=" + enabled + ", password=" + password + ", email=" + email + ", contact_number="
-				+ contact_number + "]";
+				+ contact_number + ", address=" + address + ", dob=" + dob + "]";
 	}
-	
+
+		
 	
 	
 	
