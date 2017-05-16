@@ -43,6 +43,9 @@
 					
       			<li id="register"><a
 					href="${contextRoot}/register"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+					
+				<li id="logout"><a
+					href="${contextRoot}/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>		
 				
    		   </ul>
 			

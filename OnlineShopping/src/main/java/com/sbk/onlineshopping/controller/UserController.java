@@ -1,10 +1,16 @@
 package com.sbk.onlineshopping.controller;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -88,18 +94,36 @@ public class UserController {
 		// create new user
 		userDAO.add(mUser);
 		
-		
-		return "redirect:/register?operation=register";
+		return "thankYou";
+		//return "redirect:/register?operation=register";
 	}
 	
 	@RequestMapping(value="/login",method=RequestMethod.GET)
-	public ModelAndView loginUser()
+	public String loginUser()
 	{
-		ModelAndView mv = new ModelAndView("page");
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		if(principal instanceof UserDetails)
+			return ((UserDetails)principal).getUsername();
+		/*ModelAndView mv = new ModelAndView("page");
 		mv.addObject("isUserClickedLogin",true);
 		mv.addObject("title","Login");
 		
-		return mv;
+		return mv;*/
+		return principal.toString();
+	}
+	
+	
+	@RequestMapping(value="/logout",method=RequestMethod.GET)
+	public String logout(HttpServletRequest request,HttpServletResponse response)
+	{
+		//
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		if(auth != null)
+		{
+			new SecurityContextLogoutHandler().logout(request, response, auth);
+		}
+		//request.getSession().invalidate();
+		return "redirect:/";
 	}
 	
 	
