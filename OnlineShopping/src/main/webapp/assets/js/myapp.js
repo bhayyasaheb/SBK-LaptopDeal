@@ -368,7 +368,7 @@ var $adminProductsTable = $('#adminProductsTable');
 			
 			rules : {
 				
-				userName : {
+				username : {
 					
 					required:true
 				},
@@ -381,7 +381,7 @@ var $adminProductsTable = $('#adminProductsTable');
 			
 			messages :{
 				
-				userName :{
+				username :{
 					required : 'Please Enter User Name!'
 				},
 				

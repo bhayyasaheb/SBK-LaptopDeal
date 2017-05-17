@@ -1,5 +1,5 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@taglib prefix="sf" uri="http://www.springframework.org/tags/form" %>
+
 <div class="container">
 
 	<div class="row">
@@ -13,13 +13,14 @@
 				</div>
 				
 				<div class="panel-body">
-					
+					<div class="form-login">
 					<!-- FORM ELEMENT -->
 					
-					<form id="loginForm" action="<c:url value='j_spring_security_check' />" method= POST class="form-horizontal">
+					
 						
-						<%-- <c:url var="loginUrl" value="/login" />
+						<c:url var="loginUrl" value="/login" />
                         <form action="${loginUrl}" method="post" class="form-horizontal">
+                        
                             <c:if test="${param.error != null}">
                                 <div class="alert alert-danger">
                                     <p>Invalid username and password.</p>
@@ -29,21 +30,13 @@
                                 <div class="alert alert-success">
                                     <p>You have been logged out successfully.</p>
                                 </div>
-                            </c:if> --%>
-                            
-                           <c:if test="${not empty error}">
-								<div class="error">${error}</div>
-						   </c:if>
-							<c:if test="${not empty msg}">
-								<div class="msg">${msg}</div>
-							</c:if>
-                           
+                            </c:if>
                             
 						
 						<div class="form-group">
-							<label class="control-label col-md-3" for="userName">User Name</label>
+							<label class="control-label col-md-3" for="email">User Name</label>
 							<div class="col-md-8">
-								<input type="text" name="userName"  id="userName"  class="form-control"/>
+								<input type="text" name="email"  id="email" required="required" class="form-control"/>
 								
 							</div>
 						</div>
@@ -51,12 +44,12 @@
 						<div class="form-group">
 							<label class="control-label col-md-3" for="password">Password</label>
 							<div class="col-md-8">
-								<input type="password" name="password" id="password"  class="form-control"/>
+								<input type="password" name="password" id="password" required="required"  class="form-control"/>
 								
 							</div>
 						</div>
 						
-						<%-- <input type="hidden" name="${_csrf.parameterName}"   value="${_csrf.token}" /> --%>
+						<input type="hidden" name="${_csrf.parameterName}"   value="${_csrf.token}" />
 						
 						<div class="form-group">		
 							<div class="col-md-offset-5 col-md-8">	
@@ -64,10 +57,10 @@
 							</div>
 						</div>
 						
-						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+						
 					
 					</form>
-					
+					</div>
 				</div>
 				
 			</div>

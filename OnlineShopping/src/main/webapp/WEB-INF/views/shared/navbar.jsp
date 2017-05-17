@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+	
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>	
+	
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -33,20 +36,24 @@
 				<li id="listProducts"><a
 					href="${contextRoot}/show/all/products">View Products</a></li>
 					
+			<security:authorize access="hasAuthority('ADMIN')">		
 				<li id="manageProducts"><a
-					href="${contextRoot}/manage/products">Manage Products</a></li>			
+					href="${contextRoot}/manage/products">Manage Products</a></li>	
+			</security:authorize>				
 			</ul>
 			
 			<ul class="nav navbar-nav navbar-right">
+			<security:authorize access="! isAuthenticated()">
 				<li id="login"><a
 					href="${contextRoot}/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-					
-      			<li id="register"><a
+				<li id="register"><a
 					href="${contextRoot}/register"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-					
+			</security:authorize>
+			
+			<security:authorize access="isAuthenticated()">	
 				<li id="logout"><a
 					href="${contextRoot}/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>		
-				
+			</security:authorize>	
    		   </ul>
 			
 		</div>

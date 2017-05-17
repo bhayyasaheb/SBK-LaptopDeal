@@ -99,21 +99,44 @@ public class UserController {
 	}
 	
 	@RequestMapping(value="/login",method=RequestMethod.GET)
-	public String loginUser()
+	public ModelAndView loginUser()
 	{
-		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		/*Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		if(principal instanceof UserDetails)
-			return ((UserDetails)principal).getUsername();
-		/*ModelAndView mv = new ModelAndView("page");
+			return ((UserDetails)principal).getUsername();*/
+		ModelAndView mv = new ModelAndView("page");
 		mv.addObject("isUserClickedLogin",true);
 		mv.addObject("title","Login");
+		mv.addObject("user",getPrincipal());
 		
-		return mv;*/
-		return principal.toString();
+		return mv;
+		//return principal.toString();
 	}
 	
+	@RequestMapping(value="/logout", method = RequestMethod.GET)
+    public String logoutPage (HttpServletRequest request, HttpServletResponse response) {
+		
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (auth != null){    
+            new SecurityContextLogoutHandler().logout(request, response, auth);
+        }
+        return "redirect:/";
+    }
 	
-	@RequestMapping(value="/logout",method=RequestMethod.GET)
+	
+	 private String getPrincipal(){
+	        String userName = null;
+	        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+	 
+	        if (principal instanceof UserDetails) {
+	            userName = ((UserDetails)principal).getUsername();
+	        } else {
+	            userName = principal.toString();
+	        }
+	        return userName;
+	    }
+	
+	/*@RequestMapping(value="/logout",method=RequestMethod.GET)
 	public String logout(HttpServletRequest request,HttpServletResponse response)
 	{
 		//
@@ -124,17 +147,6 @@ public class UserController {
 		}
 		//request.getSession().invalidate();
 		return "redirect:/";
-	}
-	
-	
-	
-	
-	/*@RequestMapping(value="/login",method=RequestMethod.POST)
-	public String handleLoginSubmissionModel(Model model)
-	{
-		model.addAttribute("isUserClickedLogin",true);
-		model.addAttribute("title","Login");
+	}*/
 		
-		return "page";
-	}*/	
 }

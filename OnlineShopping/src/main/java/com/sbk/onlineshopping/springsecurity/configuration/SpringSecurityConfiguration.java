@@ -7,10 +7,11 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
 @Configuration
 @EnableWebSecurity
-public class SpringSecurityConfiguration {
+public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 	
 	@Autowired
@@ -23,32 +24,38 @@ public class SpringSecurityConfiguration {
 			.usersByUsernameQuery("select email,password,true from user_detail where email=?")
 			.authoritiesByUsernameQuery("select email,role from user_detail where email=?");
 		
-        /*auth.inMemoryAuthentication().withUser("bhayyasahebkoke@gmail.com").password("SBK@123").roles("ADMIN");
+       /* auth.inMemoryAuthentication().withUser("bhayyasahebkoke@gmail.com").password("SBK@123").roles("ADMIN");
         auth.inMemoryAuthentication().withUser("sbk@gmail.com").password("123456").roles("USER");*/
         
     }
+	@Override
 	protected void configure(HttpSecurity http) throws Exception {
        
       http.authorizeRequests()
-      	
-      	.antMatchers("/manage/**").access("hasRole('ADMIN')")
+      	.antMatchers("/", "/home").permitAll()
+      	//.antMatchers("/manage/**").access("ROLE_ADMIN")
+        .antMatchers("/manage/**").access("hasAuthority('ADMIN')")
       	
       	.and()
       		.formLogin().loginPage("/login").failureUrl("/loginError")
       		.usernameParameter("email").passwordParameter("password")
+      	.and()
+      		.csrf()
       	
       	.and()
       		.logout().logoutSuccessUrl("/logout")
       	
       		.and()
-      			.exceptionHandling().accessDeniedPage("/accessDenied");
+      			.exceptionHandling().accessDeniedPage("/accessDenied")
       			
-      		/*.and()
-      			.csrf().ignoringAntMatchers("/manage/**");*/
+      		.and()
+      			.csrf().ignoringAntMatchers("/manage/**");
        /* .antMatchers("/", "/home","/login").permitAll()
         .antMatchers("/manage/**").access("hasRole('ADMIN')")
         .and().formLogin();*/
     }
+	
+	
 	
 	
 }

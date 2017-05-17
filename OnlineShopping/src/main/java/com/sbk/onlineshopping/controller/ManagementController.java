@@ -37,7 +37,7 @@ public class ManagementController {
 	private ProductDAO productDAO;
 	
 	private static Logger logger = LoggerFactory.getLogger(ManagementController.class);
-
+	
 	@RequestMapping(value="/products", method=RequestMethod.GET)
 	public ModelAndView showManageProduct(@RequestParam(name="operation",required=false) String operation)
 	{
