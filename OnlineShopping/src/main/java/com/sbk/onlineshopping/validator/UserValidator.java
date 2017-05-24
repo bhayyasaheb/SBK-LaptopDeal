@@ -1,4 +1,4 @@
-package com.sbk.onlineshopping.validator;
+/*package com.sbk.onlineshopping.validator;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.Errors;
@@ -56,3 +56,4 @@ public class UserValidator implements Validator{
 	}
 
 }
+*/

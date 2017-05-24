@@ -1,17 +1,21 @@
 package com.sbk.shoppingbackend.dto;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
+import org.springframework.stereotype.Component;
 
 @Entity
 @Table(name="User_Detail")
+@Component
 public class User {
 
 	/**
@@ -45,21 +49,35 @@ public class User {
 	//@NumberFormat(style=Style.NUMBER)
 	private String contact_number;
 	
-	@NotBlank(message="Please Enter Address!")
-	private String address;
+	/*@NotBlank(message="Please Enter Address!")
+	private String address;*/
 	
 	@NotBlank(message="Please Enter Date of Birth!")
 	private String dob;
-
-
 	
-	public String getAddress() {
+	@OneToOne(mappedBy= "user" , cascade = CascadeType.ALL)
+	private Cart cart;
+	
+	/*@OneToMany
+	@JoinColumn(name="address_id")
+	private Address address;
+	
+	public Address getAddress() {
 		return address;
 	}
 
-	public void setAddress(String address) {
+	public void setAddress(Address address) {
 		this.address = address;
+	}*/
+
+	public Cart getCart() {
+		return cart;
 	}
+
+	public void setCart(Cart cart) {
+		this.cart = cart;
+	}
+
 
 	public String getDob() {
 		return dob;
@@ -77,6 +95,14 @@ public class User {
 	public int getId() {
 		return id;
 	}
+
+	/*public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}*/
 
 	public void setId(int id) {
 		this.id = id;
@@ -142,12 +168,9 @@ public class User {
 	public String toString() {
 		return "User [id=" + id + ", first_name=" + first_name + ", last_name=" + last_name + ", role=" + role
 				+ ", enabled=" + enabled + ", password=" + password + ", email=" + email + ", contact_number="
-				+ contact_number + ", address=" + address + ", dob=" + dob + "]";
+				+ contact_number + ", dob=" + dob + ", cart=" + cart + "]";
 	}
 
-		
-	
-	
 	
 	
 }

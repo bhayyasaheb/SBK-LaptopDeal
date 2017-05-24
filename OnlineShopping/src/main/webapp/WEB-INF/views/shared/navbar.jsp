@@ -52,8 +52,13 @@
 			
 			<security:authorize access="isAuthenticated()">	
 				<li id="logout"><a
-					href="${contextRoot}/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>		
+					href="${contextRoot}/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
 			</security:authorize>	
+			
+			<security:authorize access="hasAuthority('USER')">
+			<li id="logout"><a
+					href="${contextRoot}/cart"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li>
+			</security:authorize>
    		   </ul>
 			
 		</div>

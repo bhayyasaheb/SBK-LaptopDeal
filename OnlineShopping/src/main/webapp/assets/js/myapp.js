@@ -408,6 +408,7 @@ var $adminProductsTable = $('#adminProductsTable');
 	
 	//-----------------------------------------------------
 	
+	
 });
 
 

@@ -9,6 +9,8 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.sbk.shoppingbackend.dao.UserDAO;
+import com.sbk.shoppingbackend.dto.Address;
+import com.sbk.shoppingbackend.dto.Cart;
 import com.sbk.shoppingbackend.dto.User;
 
 @Repository("userDAO")
@@ -21,16 +23,16 @@ public class UserDAOImpl implements UserDAO {
 	/**
 	 * Getting single User by id
 	 */
-	@Override
+	/*@Override
 	public User get(int userId) {
 
 		return sessionFactory.getCurrentSession().get(User.class, Integer.valueOf(userId));
 
 	}
 
-	/**
+	*//**
 	 * Get the List of All User
-	 */
+	 *//*
 
 	@Override
 	public List<User> list() {
@@ -38,9 +40,9 @@ public class UserDAOImpl implements UserDAO {
 		return sessionFactory.getCurrentSession().createQuery("FROM User", User.class).getResultList();
 	}
 
-	/**
+	*//**
 	 * Insert User
-	 */
+	 *//*
 	@Override
 	public boolean add(User user) {
 		try {
@@ -52,9 +54,9 @@ public class UserDAOImpl implements UserDAO {
 		}
 	}
 
-	/**
+	*//**
 	 * Update User
-	 */
+	 *//*
 	@Override
 	public boolean update(User user) {
 		try {
@@ -66,9 +68,9 @@ public class UserDAOImpl implements UserDAO {
 		}
 	}
 
-	/**
-	 * Delete Product
-	 */
+	*//**
+	 * Delete User
+	 *//*
 	@Override
 	public boolean delete(User user) {
 		try {
@@ -82,9 +84,9 @@ public class UserDAOImpl implements UserDAO {
 
 	}
 
-	/**
+	*//**
 	 * List of Active User
-	 */
+	 *//*
 	@Override
 	public List<User> listActiveUser() {
 
@@ -94,9 +96,9 @@ public class UserDAOImpl implements UserDAO {
 				.setParameter("enabled", true).getResultList();
 	}
 
-	/**
+	*//**
 	 * List of active User by role
-	 */
+	 *//*
 	@Override
 	public List<User> listActiveUserByRole(String role) {
 
@@ -118,11 +120,11 @@ public class UserDAOImpl implements UserDAO {
 		}
 
 		// return (User)
-		/*
+		
 		 * Query query=sessionFactory.getCurrentSession().
 		 * createQuery("FROM User where email=?"); query.setString(0, email);
 		 * query.uniqueResult(); return (User) query;
-		 */
+		 
 
 	}
 
@@ -137,6 +139,99 @@ public class UserDAOImpl implements UserDAO {
 		} catch (Exception e) {
 			return null;
 		}
+	}*/
+
+	@Override
+	public boolean addAddress(Address address) {
+		try {
+			sessionFactory.getCurrentSession().persist(address);
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+			}
 	}
 
+	@Override
+	public boolean updateCart(Cart cart) {
+		try {
+			sessionFactory.getCurrentSession().update(cart);
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
+	@Override
+	public User get(int userId) {
+
+		return sessionFactory.getCurrentSession().get(User.class, Integer.valueOf(userId));
+
+	}
+
+	@Override
+	public boolean addUser(User user) {
+		try {
+			sessionFactory.getCurrentSession().persist(user);
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
+	@Override
+	public User getByEmail(String email) {
+
+		try {
+			return sessionFactory.getCurrentSession().createQuery("From User where email = :email",User.class)
+					.setParameter("email", email).getSingleResult();
+		} catch (Exception e) {
+			//e.printStackTrace();
+			return null;
+		}
+	}
+
+	@Override
+	public Address getBillingAddress(User user) {
+		String selectQuery = "FROM Address Where user = :user AND billing = :billing";
+		
+		try {
+			return sessionFactory.getCurrentSession()
+					 .createQuery(selectQuery,Address.class)
+					 	.setParameter("user", user)
+						.setParameter("billing",true)
+						.getSingleResult();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+
+	}
+
+	@Override
+	public List<Address> listShippingAddresses(User user) {
+		
+		
+		String selectQuery = "FROM Address Where user = :user AND shipping = :shipping";
+		
+		try {
+			return sessionFactory.getCurrentSession()
+					 .createQuery(selectQuery,Address.class)
+					 	.setParameter("user", user)
+						.setParameter("shipping",true)
+						.getResultList();
+						
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	
+
+	
 }

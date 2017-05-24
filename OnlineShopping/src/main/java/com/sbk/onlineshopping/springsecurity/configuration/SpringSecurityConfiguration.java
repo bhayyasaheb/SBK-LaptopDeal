@@ -35,6 +35,7 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
       	.antMatchers("/", "/home").permitAll()
       	//.antMatchers("/manage/**").access("ROLE_ADMIN")
         .antMatchers("/manage/**").access("hasAuthority('ADMIN')")
+        .antMatchers("/cart/**").access("hasAuthority('USER')")
       	
       	.and()
       		.formLogin().loginPage("/login").failureUrl("/loginError")

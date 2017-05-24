@@ -66,13 +66,13 @@
 							</div>
 						</div>
 						
-						<div class="form-group">
+						<%-- <div class="form-group">
 							<label class="control-label col-md-4" for="address">Enter Address</label>
 							<div class="col-md-8">
 								<sf:input type="text" path="address" id="address" placeholder="Address" class="form-control"/>
 								<sf:errors path="address" cssClass="help-block" element="em"/> 
 							</div>
-						</div>
+						</div> --%>
 						
 					     
 					   <div class="form-group">

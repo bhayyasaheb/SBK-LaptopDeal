@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.sbk.shoppingbackend.dao.UserDAO;
+import com.sbk.shoppingbackend.dto.Cart;
 import com.sbk.shoppingbackend.dto.User;
 
 @Controller
@@ -32,7 +33,8 @@ public class UserController {
 	@Autowired
 	private UserDAO userDAO;
 	
-	
+	@Autowired
+	private Cart cart;
 	
 	
 	@RequestMapping(value="/register",method=RequestMethod.GET)
@@ -46,7 +48,6 @@ public class UserController {
 			User nUser= new User();
 		// set the few of the fields 
 		nUser.setEnabled(true);
-		
 		mv.addObject("register",nUser);
 		
 		if(operation != null)
@@ -70,16 +71,17 @@ public class UserController {
 				results.rejectValue("email", null , "Email already present!");
 			}
 		}
+		//mUser.setCart(cart);
 		
 		// check whether contact number already exist or not in database
 		
-		if(!mUser.getContact_number().isEmpty())
+		/*if(!mUser.getContact_number().isEmpty())
 		{
 			if(userDAO.getByContactNumber(mUser.getContact_number()) != null)
 			{
 				results.rejectValue("contact_number", null, "Contact Number Aready Present!");
 			}
-		}
+		}*/
 		// check if there are any errors
 		if(results.hasErrors())
 		{
@@ -89,10 +91,16 @@ public class UserController {
 			
 			return "page";
 		}
+		
 		logger.info(mUser.toString());
 		
+		mUser.setCart(cart);
+		cart.setUser(mUser);
+		
+		
 		// create new user
-		userDAO.add(mUser);
+		userDAO.addUser(mUser);
+		
 		
 		return "thankYou";
 		//return "redirect:/register?operation=register";
@@ -101,9 +109,7 @@ public class UserController {
 	@RequestMapping(value="/login",method=RequestMethod.GET)
 	public ModelAndView loginUser()
 	{
-		/*Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		if(principal instanceof UserDetails)
-			return ((UserDetails)principal).getUsername();*/
+		
 		ModelAndView mv = new ModelAndView("page");
 		mv.addObject("isUserClickedLogin",true);
 		mv.addObject("title","Login");
@@ -136,17 +142,6 @@ public class UserController {
 	        return userName;
 	    }
 	
-	/*@RequestMapping(value="/logout",method=RequestMethod.GET)
-	public String logout(HttpServletRequest request,HttpServletResponse response)
-	{
-		//
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		if(auth != null)
-		{
-			new SecurityContextLogoutHandler().logout(request, response, auth);
-		}
-		//request.getSession().invalidate();
-		return "redirect:/";
-	}*/
+	
 		
 }

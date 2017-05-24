@@ -101,6 +101,12 @@
 			<c:if test="${isUserClickedLogin == true}">
 				<%@include file="login.jsp"%>
 			</c:if>
+			
+			<!-- Load only when user clicked Cart -->
+			<c:if test="${isUserClickedCart == true}">
+				<%@include file="cart.jsp"%>
+			</c:if>
+			
 
 		</div>
 

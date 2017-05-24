@@ -18,6 +18,7 @@ CREATE TABLE user_detail(
 	id IDENTITY,
 	first_name VARCHAR(50),
 	last_name VARCHAR(50),
+	dob varchar(20),
 	role VARCHAR(50),
 	enabled BOOLEAN,
 	password VARCHAR(50),
@@ -28,16 +29,16 @@ CREATE TABLE user_detail(
 );
 
 INSERT INTO user_detail
-(first_name,last_name,role,enabled,password,email,contact_number)
-VALUES ('Bhayyasaheb','Koke','ADMIN',true,'admin','bhayyasahebkoke@gmail.com','9730586363');
+(first_name,last_name,dob,role,enabled,password,email,contact_number)
+VALUES ('Bhayyasaheb','Koke','30/04/1993','ADMIN',true,'SBK@123','bhayyasahebkoke@gmail.com','9730586363');
 
 INSERT INTO user_detail
-(first_name,last_name,role,enabled,password,email,contact_number)
-VALUES ('Mohan','Lohar','SUPPLIER',true,'Mohan@123','mohanlohar63@gmail.com','7387828468');
+(first_name,last_name,dob,role,enabled,password,email,contact_number)
+VALUES ('Mohan','Lohar','25/06/1993','SUPPLIER',true,'Mohan@123','mohanlohar63@gmail.com','7387828468');
 
 INSERT INTO user_detail
-(first_name,last_name,role,enabled,password,email,contact_number)
-VALUES ('Mahesh','Zagade','SUPPLIER',true,'Mahesh@123','maheshzagade@gmail.com','9156330909');
+(first_name,last_name,dob,role,enabled,password,email,contact_number)
+VALUES ('Mahesh','Zagade','27/11/1991','SUPPLIER',true,'Mahesh@123','maheshzagade@gmail.com','9156330909');
 
 CREATE TABLE product(
 	id IDENTITY,
@@ -114,3 +115,6 @@ CREATE TABLE user_detail(
 	CONSTRAINT pk_user_id PRIMARY KEY(id),
 );
 
+
+
+INSERT INTO CART (cartitems,grandtotal,user_id,noofcartitems) VALUES (1,'15000',1,2);
