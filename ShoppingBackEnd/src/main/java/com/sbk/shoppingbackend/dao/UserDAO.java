@@ -66,5 +66,9 @@ public interface UserDAO {
 	// get single user by id
 		User get(int userId);
 		
+	/*//  get cart by id
+	Cart getById(int cartId);*/	
+		
+		
 		
 }

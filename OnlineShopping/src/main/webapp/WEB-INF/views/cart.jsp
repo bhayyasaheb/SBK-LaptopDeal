@@ -1,49 +1,12 @@
-<%-- <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form" %>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
-</head>
-<body>
 
-	<fmt:setLocale value="en_US" scope="session"/>
-	
-	<div class="page-title">My Cart</div>
-	
-	<c:if test="${empty cart or empty cart.cartItems }">
-		<h2>There is no item in Cart</h2>
-		<a href="${contextRoot}/show/all/products">View Product</a>
-	</c:if>
-	
-	<c:if test="${not empty cart or not empty cart.cartItems}">
-	
-		<sf:form method="POST" modelAttribute="cart" action="${contextRoot}/cart">
-		
-			<c:forEach items="${cart.cartItems} var="cartItem">
-			
-			
-					<div class="product-preview-container">
-						<ul>
-							<li><img class="product-image" alt="" src="${contextRoot}/resources/images/'+code+'.jpg"></li>
-							
-							<li></li>
-						</ul>
-					</div>
-			</c:forEach>
-		
-		</sf:form>
-	</c:if>
-	
-</body>
-</html>
- --%>
- 
- <link href="/resources/css/cart.css" rel="stylesheet">
+<%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<spring:url var="css" value="/resources/css" />
+
+ <link href="${css}/cart.css" rel="stylesheet">
  
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form" %>
+
 
 <div class="container">
 	
@@ -67,6 +30,7 @@
 						</tr>
 					</thead>
 					<tbody>
+					
 					<c:forEach  var="cartItem"  items="${cartItem}">
 						<tr>
 							<td data-th="Product">
@@ -100,7 +64,7 @@
 						<tr>
 							<td><a href="${contextRoot}/show/all/products" class="btn btn-warning"><i class="fa fa-angle-left"></i> Continue Shopping</a></td>
 							<td colspan="2" class="hidden-xs"></td>
-							<td class="hidden-xs text-center"><strong>Total $1.99</strong></td>
+							<td class="hidden-xs text-center"><strong>Total &#8377; ${cart.grandTotal}</strong></td>
 							<td><a href="#" class="btn btn-success btn-block">Checkout <i class="fa fa-angle-right"></i></a></td>
 						</tr>
 					</tfoot>

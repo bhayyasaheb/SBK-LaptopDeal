@@ -50,7 +50,7 @@ public class CartItemDAOImpl implements CartItemDAO {
 	public boolean addCartItems(CartItems cartItems) {
 		
 		try {
-			sessionFactory.getCurrentSession().persist(cartItems);
+			sessionFactory.getCurrentSession().save(cartItems);
 			return true;
 			
 		} catch (Exception e) {

@@ -1,4 +1,4 @@
-/*package com.sbk.shoppingbackend.daoimpl;
+package com.sbk.shoppingbackend.daoimpl;
 
 import java.util.List;
 
@@ -35,10 +35,14 @@ public class CartDAOImpl implements CartDAO{
 	
 	@Override
 	public Cart getCart(int userId) {
+		try {
+			user = userDAO.get(userId);
+			int cartId = user.getCart().getId();
+			return sessionFactory.getCurrentSession().get(Cart.class, cartId);
+		} catch (Exception e) {
+			return null;		
+		}
 		
-		user = userDAO.get(userId);
-		int cartId = user.getCart().getId();
-		return sessionFactory.getCurrentSession().get(Cart.class, cartId);
 	}
 
 	@Override
@@ -68,4 +72,3 @@ public class CartDAOImpl implements CartDAO{
 	
 	
 }
-*/

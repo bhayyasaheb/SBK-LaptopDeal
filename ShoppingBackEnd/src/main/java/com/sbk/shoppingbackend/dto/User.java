@@ -58,16 +58,27 @@ public class User {
 	@OneToOne(mappedBy= "user" , cascade = CascadeType.ALL)
 	private Cart cart;
 	
-	/*@OneToMany
-	@JoinColumn(name="address_id")
-	private Address address;
+	/*@OneToMany(mappedBy ="user", cascade = CascadeType.ALL, fetch= FetchType.EAGER)
+	private List<Order> order;*/
 	
-	public Address getAddress() {
+	/*@OneToMany(fetch=FetchType.EAGER)
+	@JoinColumn(name="address_id")
+	private List<Address> address;
+
+	public List<Address> getAddress() {
 		return address;
 	}
 
-	public void setAddress(Address address) {
+	public void setAddress(List<Address> address) {
 		this.address = address;
+	}*/
+	
+	/*public List<Order> getOrder() {
+		return order;
+	}
+
+	public void setOrder(List<Order> order) {
+		this.order = order;
 	}*/
 
 	public Cart getCart() {

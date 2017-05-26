@@ -60,7 +60,7 @@ public class HibernateConfig {
 		properties.put("hibernate.dailect", DATABASE_DAILECT);
 		properties.put("hibernate.show_sql", "true");
 		properties.put("hibernate.format_sql", "true");
-		properties.put("hibernate.use_sql_comments", "true");
+		//properties.put("hibernate.use_sql_comments", "true");
 		properties.put("hibernate.hbm2ddl.auto", "update");
 
 		return properties;

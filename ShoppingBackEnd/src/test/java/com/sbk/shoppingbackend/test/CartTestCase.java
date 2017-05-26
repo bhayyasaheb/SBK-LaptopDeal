@@ -1,7 +1,5 @@
 /*package com.sbk.shoppingbackend.test;
 
-import static org.junit.Assert.*;
-
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -63,6 +61,12 @@ public class CartTestCase {
 		cart.getCartItems();
 		
 		assertEquals("Failed to get the Grand Total!",350000,cartDAO.grandTotal(cart));
+	}
+	
+	@Test
+	public void getCartTestCart(){
+		
+		
 	}
 }
 */

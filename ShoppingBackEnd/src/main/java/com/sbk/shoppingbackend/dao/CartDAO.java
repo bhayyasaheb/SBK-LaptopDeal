@@ -1,4 +1,4 @@
-/*package com.sbk.shoppingbackend.dao;
+package com.sbk.shoppingbackend.dao;
 
 import com.sbk.shoppingbackend.dto.Cart;
 
@@ -13,4 +13,3 @@ public interface CartDAO {
 	// update grand total
 	void grandTotal(Cart cart);
 }
-*/

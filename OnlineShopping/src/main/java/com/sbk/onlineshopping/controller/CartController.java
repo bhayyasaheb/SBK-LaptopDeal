@@ -1,9 +1,7 @@
 package com.sbk.onlineshopping.controller;
 
 import java.security.Principal;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import javax.servlet.http.HttpSession;
 
@@ -15,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.sbk.shoppingbackend.dao.CartDAO;
 import com.sbk.shoppingbackend.dao.CartItemDAO;
 import com.sbk.shoppingbackend.dao.ProductDAO;
 import com.sbk.shoppingbackend.dao.UserDAO;
@@ -46,6 +45,8 @@ public class CartController {
 	@Autowired
 	private Cart cart;
 	
+	@Autowired
+	private CartDAO cartDAO;
 		
 	@Autowired 
 	private CartItemDAO cartItemDAO;
@@ -76,6 +77,9 @@ public class CartController {
 		session.setAttribute("noOfCartItems", cartItems.size());
 		mv.addObject("cartItem",cartItems);
 		mv.addObject("cartItems",new CartItems());
+		mv.addObject("cart" , cartDAO.getCart(user.getId()));
+		//mv.addObject("cart",user.getCart().getGrandTotal());
+		//mv.addObject("cart",new Cart());
 		mv.addObject("title","Cart");
 		mv.addObject("isUserClickedCart",true);
 		
@@ -92,7 +96,7 @@ public class CartController {
 		user = userDAO.getByEmail(principal.getName());
 		product = productDAO.get(productId);
 		
-		Set<CartItems> cartItem = new HashSet<>();
+		//Set<CartItems> cartItem = new HashSet<>();
 		
 		cart = user.getCart();
 		
@@ -110,11 +114,12 @@ public class CartController {
 				cartItems.setTotalAmount(cartItems.getPrice() * cartItems.getQuantity());
 				cartItems.setCart(cart);
 				
-				cartItem.add(cartItems);
+				//cartItem.add(cartItems);
 				cartItemDAO.addCartItems(cartItems);
+				product.setQuantity(product.getQuantity() - 1);
 				productDAO.update(product);
-				cart.setNoOfCartItems(cartItems.getQuantity());
-				cart.setGrandTotal(cartItems.getTotalAmount());
+				cart.setNoOfCartItems(cart.getNoOfCartItems() + cartItems.getQuantity());
+				cart.setGrandTotal(cart.getGrandTotal() + cartItems.getTotalAmount() );
 				userDAO.updateCart(cart);
 				
 				url ="redirect:/cart?op=add&status=success";
@@ -126,15 +131,18 @@ public class CartController {
 				
 				CartItems exitItem = cartItemDAO.getById(product.getId(), cart.getId());
 				exitItem.setQuantity(exitItem.getQuantity() +1);
-				
-				productDAO.update(product);
-				
+			
 				exitItem.setTotalAmount(exitItem.getTotalAmount() + product.getUnitPrice());
+				
+				
 				
 				cartItemDAO.updateCartItems(exitItem);
 				
-				cart.setNoOfCartItems(cart.getNoOfCartItems() + cartItems.getQuantity());
-				cart.setGrandTotal(cart.getGrandTotal() + cartItems.getTotalAmount());
+				product.setQuantity(product.getQuantity() - 1);
+				productDAO.update(product);
+				
+				//cart.setNoOfCartItems(cart.getNoOfCartItems() + cartItems.getQuantity());
+				cart.setGrandTotal(cart.getGrandTotal() + product.getUnitPrice());
 				
 				userDAO.updateCart(cart);
 				
@@ -163,14 +171,14 @@ public class CartController {
 			cart = user.getCart();
 			cartItems = cartItemDAO.getCartItemsById(id);
 			
-			product = productDAO.get(cartItems.getProduct().getId());
+			/*product = productDAO.get(cartItems.getProduct().getId());
 			product.setQuantity(product.getQuantity() + cartItems.getQuantity());
-			productDAO.update(product);
+			productDAO.update(product);*/
+			
+			cart.setNoOfCartItems(cart.getNoOfCartItems() - 1);
+			cart.setGrandTotal(cart.getGrandTotal() - cartItems.getTotalAmount());
 			
 			cartItemDAO.deleteCartItems(cartItems);
-			
-			cart.setNoOfCartItems(cart.getNoOfCartItems() - cartItems.getQuantity());
-			cart.setGrandTotal(cart.getGrandTotal() - cartItems.getTotalAmount());
 			
 			userDAO.updateCart(cart);
 			

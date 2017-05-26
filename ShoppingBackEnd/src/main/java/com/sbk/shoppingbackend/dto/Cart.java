@@ -77,6 +77,12 @@ public class Cart {
 		this.noOfCartItems = noOfCartItems;
 	}
 
+	@Override
+	public String toString() {
+		return "Cart [id=" + id + ", cartItems=" + cartItems + ", user=" + user + ", noOfCartItems=" + noOfCartItems
+				+ ", grandTotal=" + grandTotal + "]";
+	}
+
 	
 		
 	
