@@ -1,5 +1,6 @@
 package com.sbk.shoppingbackend.dto;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -16,7 +17,12 @@ import org.springframework.stereotype.Component;
 
 @Entity
 @Component
-public class Cart {
+public class Cart implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

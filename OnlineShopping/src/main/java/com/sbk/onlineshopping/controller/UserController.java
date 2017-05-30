@@ -94,9 +94,13 @@ public class UserController {
 		
 		logger.info(mUser.toString());
 		
+		// add cart when role is user only
+		if(mUser.getRole().equals("USER"))
+		{
+			cart  = new Cart();
 		mUser.setCart(cart);
 		cart.setUser(mUser);
-		
+		}
 		
 		// create new user
 		userDAO.addUser(mUser);
@@ -117,6 +121,21 @@ public class UserController {
 		
 		return mv;
 		//return principal.toString();
+	}
+	
+	
+	@RequestMapping(value="/loginError",method=RequestMethod.GET)
+	public ModelAndView loginError()
+	{
+		ModelAndView mv = new ModelAndView("loginError");
+		return mv;
+	}
+	
+	@RequestMapping(value="/accessDenied",method=RequestMethod.GET)
+	public ModelAndView accessDenined()
+	{
+		ModelAndView mv = new ModelAndView("accessDenied");
+		return mv;
 	}
 	
 	@RequestMapping(value="/logout", method = RequestMethod.GET)

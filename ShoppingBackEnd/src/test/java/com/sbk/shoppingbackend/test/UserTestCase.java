@@ -42,14 +42,13 @@ public class UserTestCase {
 		user.setFirst_name("Bhayyasaheb");
 		user.setLast_name("Koke");
 		user.setDob("30/04/1993");
-		user.setAddress("Mhaswad");
 		user.setRole("Admin");
 		user.setEnabled(true);
 		user.setPassword("SBK@123");
 		user.setEmail("bhayyasahebkoke@gmail.com");
 		user.setContact_number("9730586363");
 		
-		//assertEquals("Something went wrong while inserting a new User!",true,userDAO.add(user));
+		assertEquals("Something went wrong while inserting a new User!",true,userDAO.addUser(user));
 		
 		// reading and updating the user
 		
@@ -59,14 +58,14 @@ public class UserTestCase {
 		user.setRole("ADMIN");
 		user.setEnabled(true);
 		
-		assertEquals("Something went wrong while updating the existing record!", true,userDAO.update(user));
+		//assertEquals("Something went wrong while updating the existing record!", true,userDAO.update(user));
 		
 		// delete the user
 		
-		assertEquals("Something went wrong while deleting the existing record!",true,userDAO.delete(user));
+		//assertEquals("Something went wrong while deleting the existing record!",true,userDAO.delete(user));
 		
 		//list of the user
-		assertEquals("Something went wrong while fetching the existing record!", 1,userDAO.list().size());
+		//assertEquals("Something went wrong while fetching the existing record!", 1,userDAO.list().size());
 	}*/
 	
 	/*@Test
@@ -314,13 +313,13 @@ public class UserTestCase {
 	}
 	*/
 
-	@Test
+	/*@Test
 	public void testUserByEmail()
 	{
 		user=userDAO.getByEmail("bhayyasahebkoke@gmail.com");
 		System.out.println(user);
 		assertEquals("Something went wrong while fetching the Email of User!","bhayyasahebkoke@gmail.com",user.getEmail());
-	}
+	}*/
 
 }
 

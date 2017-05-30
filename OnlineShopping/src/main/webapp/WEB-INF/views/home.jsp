@@ -2,6 +2,7 @@
 	pageEncoding="ISO-8859-1"%>
 	
 	<%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 	
 	<spring:url var="images" value="/resources/images" />
 	
@@ -74,8 +75,33 @@
 					</div>
 
 				</div>
+				
+				
+				
+				  <div class="row">
+				<c:forEach items="${products}" var="product">
+                    <div class="col-sm-4 col-lg-4 col-md-4">
+                        <div class="thumbnail">
+                              <a href="${contextroot}/show/${product.id}/product">
+                              <img src="${product.code}" alt="product" width="200px" height="100px" /></a>
+                            <div class="caption">
+                                <h4 class="pull-right">&#8377;${product.price}</h4>
+                                <h4><a href="${contextroot}/show/${product.id}/product">${product.name}</a>
+                                </h4>
+                                <p>${product.description}</p>
+                            </div>
+                           <div>
+                           <a href="${contextRoot}/cart/add/${product.id}/product"
+						class="btn btn-success"> <span
+						class="glyphicon glyphicon-shopping-cart"></span> Add to Cart </a>
+                          		         
+                           </div>
+                        </div>
+                        </div>
+                    
+				</c:forEach>
 
-				<div class="row">
+<!-- 				<div class="row">
 
 					<div class="col-sm-4 col-lg-4 col-md-4">
 						<div class="thumbnail">
@@ -216,7 +242,7 @@
 					</div>
 
 				</div>
-
+ -->
 			</div>
 
 		</div>

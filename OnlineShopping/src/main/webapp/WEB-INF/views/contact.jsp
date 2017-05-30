@@ -1,14 +1,3 @@
-<!-- 
-<div class="container">
-
-	<div class="row">
-		<h1>Contact Us</h1>
-		<hr>
-		<p>This is an contact us page</p>
-
-	</div>
-</div>
- -->
 
  
  <div class="jumbotron jumbotron-sm">
@@ -61,9 +50,9 @@
                         </div>
                     </div>
                     <div class="col-md-12">
-                        <button type="submit" class="btn btn-primary pull-right" id="btnContactUs">
-                            Send Message</button>
-                           <!-- <a href="" class="btn  btn-primary pull-right">Send Message</a> -->   
+                        <%-- <button type="submit" href="${contextRoot}/home" class="btn btn-primary pull-right" id="btnContactUs">
+                            Send Message</button> --%>
+                           <a href="${contextRoot}/home" class="btn  btn-primary pull-right">Send Message</a>   
                     </div>
                 </div>
                 </form>

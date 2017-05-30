@@ -56,6 +56,7 @@ public class CartController {
 	
 	
 	
+	
 	/*
 	 * Method to access Cart Page
 	 */
@@ -190,6 +191,22 @@ public class CartController {
 		}
 		
 	}
+	
+	/*@RequestMapping(value="/cart/deleteAll/{id}")
+	public String deleteCart(@PathVariable("id") int id, Principal principal)
+	{
+		user = userDAO.getByEmail(principal.getName());
+		
+		if(id != 0)
+		{
+			cart = user.getCart();
+			cartItemDAO.deleteAllCartItems(id);
+			userDAO.updateCart(cart);
+		}
+		
+		return "redirect:shippingAddress";
+	}*/
+	
 	
 	
 }

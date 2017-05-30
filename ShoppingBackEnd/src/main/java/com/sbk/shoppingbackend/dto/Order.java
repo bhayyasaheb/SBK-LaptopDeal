@@ -55,13 +55,11 @@ public class Order {
 
 	public void setGrandTotal(double grandTotal) {
 		this.grandTotal = grandTotal;
-	}
-	
-	
+	}	
 	
 }
-*/
-/*package com.sbk.shoppingbackend.dto;
+
+package com.sbk.shoppingbackend.dto;
 
 import java.util.Date;
 
@@ -119,7 +117,7 @@ public class Order {
 	}
 	
 	
-}*/
+}
 
 
 
@@ -148,3 +146,4 @@ public class Order {
 
 
 
+*/

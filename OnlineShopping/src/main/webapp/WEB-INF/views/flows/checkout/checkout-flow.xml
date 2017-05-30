@@ -1,0 +1,35 @@
+<!-- <?xml version="1.0" encoding="UTF-8"?>
+<flow xmlns="http://www.springframework.org/schema/webflow"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.springframework.org/schema/webflow
+                          http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
+
+	<var name="address" class="com.sbk.shoppingbackend.dto.Address"/>
+
+
+			is the start state
+			<view-state id="billing" view="flows/chekout/checkout-billing" model="address">
+				<transition on="shipping" to="shipping"/>
+			</view-state>
+			
+			<view-state id="shipping" view="flows/chekout/checkout-shipping">
+				<transition on="billing" to="billing" />
+				<transition on="confirm" to="confirm"/>
+			</view-state>
+			
+			<view-state id="confirm" view="flows/chekout/checkout-confirm">
+				<transition on="shipping" to="shipping"/>
+				<transition on="billing" to="billing" />
+				<transition on="success" to="success"/>
+			</view-state>
+			
+			End State
+			<end-state id="home" view="externalRedirect:contextRelative:/"/>
+			
+			<end-state id="success" view="flows/chekout/checkout-success"/>
+			
+			Global Transition
+			<global-transitions>
+				<transition on="home" to="home"/>
+			</global-transitions>
+</flow> -->

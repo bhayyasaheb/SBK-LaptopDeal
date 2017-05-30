@@ -107,8 +107,12 @@
 				<%@include file="cart.jsp"%>
 			</c:if>
 			
-
-		</div>
+			<!-- Load only when user clicked Checkout -->
+			<c:if test="${isUserClickedShippingAddress == true}">
+				<%@include file="checkout.jsp"%>
+			</c:if>
+			
+		
 
 		<!----------------------------------------- Footer ----------------------------------------------->
 

@@ -43,7 +43,7 @@
 								</div>
 							</td>
 							<td data-th="Price">${cartItem.product.unitPrice}</td>
-							<td data-th="Quantity">${cartItem.quantity}</td>
+							<td data-th="Quantity" align="center">${cartItem.quantity}</td>
 							<!-- 	<input type="number" class="form-control text-center" value="1">
 							</td> -->
 							<td data-th="Subtotal" class="text-center">${cartItem.totalAmount}</td>
@@ -58,14 +58,14 @@
 						</c:forEach>
 					</tbody>
 					<tfoot>
-						<tr class="visible-xs">
+						<!-- <tr class="visible-xs">
 							<td class="text-center"><strong>Total 1.99</strong></td>
-						</tr>
+						</tr> -->
 						<tr>
 							<td><a href="${contextRoot}/show/all/products" class="btn btn-warning"><i class="fa fa-angle-left"></i> Continue Shopping</a></td>
 							<td colspan="2" class="hidden-xs"></td>
 							<td class="hidden-xs text-center"><strong>Total &#8377; ${cart.grandTotal}</strong></td>
-							<td><a href="#" class="btn btn-success btn-block">Checkout <i class="fa fa-angle-right"></i></a></td>
+							<td><a href="${contextRoot}/shippingAddress" class="btn btn-success btn-block">Checkout <i class="fa fa-angle-right"></i></a></td>
 						</tr>
 					</tfoot>
 				</table>

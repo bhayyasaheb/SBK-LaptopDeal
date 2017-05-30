@@ -25,6 +25,10 @@ $(function() {
 		$('#login').addClass('active');
 		break;	
 
+	case 'Cart':
+		$('#cart').addClass('active');
+		break;
+		
 	default:
 		if(menu == "Home") break;
 		$('#listProducts').addClass('active');
